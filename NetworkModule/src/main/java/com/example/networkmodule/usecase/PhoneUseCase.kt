@@ -1,6 +1,7 @@
 package com.example.networkmodule.usecase
 
 import android.util.Log
+import com.example.networkmodule.model.ProductsItem
 import com.example.networkmodule.model.Response
 import com.example.networkmodule.network.Resource
 import com.example.networkmodule.repository.PhoneRepository

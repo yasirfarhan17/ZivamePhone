@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.networkmodule.model.ProductsItem
 import com.example.networkmodule.network.Resource
 import com.example.networkmodule.model.Response
 import com.example.networkmodule.usecase.PhoneUseCase
@@ -26,7 +27,7 @@ class HomeViewModel  @Inject constructor(
     private val _viewState=MutableLiveData<ViewState>(ViewState.Idle)
     val viewState=_viewState.toLiveData()
 
-    private val _phoneList=MutableLiveData<Response>()
+    private val _phoneList=MutableLiveData<List<ProductsItem>>()
     val phoneList=_phoneList.toLiveData()
 
     private val _setError = MutableLiveData<String>()
@@ -37,7 +38,8 @@ class HomeViewModel  @Inject constructor(
             _viewState.postValue(ViewState.Loading)
             when(it){
                 is Resource.Success ->{
-                    _phoneList.postValue(it.data)
+                    _phoneList.postValue(it.data?.products as List<ProductsItem>?)
+                    Log.d("againcheck","${it.data?.products}")
                     _viewState.postValue(ViewState.Success())
                 }
                 is Resource.Error ->{

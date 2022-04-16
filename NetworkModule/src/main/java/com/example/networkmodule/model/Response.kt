@@ -11,7 +11,7 @@ data class Response(
 @Parcelize
 data class ProductsItem(
 	val price: String? = null,
-	val imageUrl: String? = null,
+	val image_url: String? = null,
 	val name: String? = null,
 	val rating: Int? = null
 ) : Parcelable
