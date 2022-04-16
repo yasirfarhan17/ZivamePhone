@@ -2,7 +2,7 @@ package com.example.zivamephone.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(),PhoneAdapterCallBack {
 
     private val _viewModel:HomeViewModel by viewModels()
     private lateinit var uiUtil: UiUtil
@@ -33,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
     private fun initUi(){
         with(binding){
             rvHome.layoutManager=StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL)
-            rvHome.adapter=HomeAdapter()
+            rvHome.adapter=HomeAdapter(this@HomeActivity)
             _viewModel.getPhoneList()
         }
 
@@ -47,5 +47,10 @@ class HomeActivity : AppCompatActivity() {
         _viewModel.phoneList.observe(this){
             (binding.rvHome.adapter as HomeAdapter).submitList(list =it as ArrayList<ProductsItem>)
         }
+    }
+
+    override fun onItemClick(item: ProductsItem) {
+        _viewModel.insertToDB(item)
+        Toast.makeText(this,"Item Successfully Added",Toast.LENGTH_SHORT).show()
     }
 }

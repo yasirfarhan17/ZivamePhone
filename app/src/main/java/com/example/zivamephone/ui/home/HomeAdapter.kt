@@ -9,9 +9,12 @@ import com.example.networkmodule.model.ProductsItem
 import com.example.zivamephone.R
 import com.example.zivamephone.databinding.IndiItemViewBinding
 
-class HomeAdapter () :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
+class HomeAdapter (
+    private val callBack: PhoneAdapterCallBack
+        ) :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
     private val item=ArrayList<ProductsItem>()
     private val itemFilter=ArrayList<ProductsItem>()
+
 
 
     @SuppressLint("NotifyDataSetChange")
@@ -34,6 +37,10 @@ class HomeAdapter () :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
                 tvProduct.text=item.name
                 tvPrice.text=item.price
                 ratingBar.rating= item.rating?.toFloat()!!
+
+                btAdd.setOnClickListener {
+                    callBack.onItemClick(item)
+                }
             }
         }
     }
@@ -50,4 +57,8 @@ class HomeAdapter () :RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
 
     override fun getItemCount(): Int =item.size
 
+}
+
+interface PhoneAdapterCallBack{
+    fun onItemClick(item: ProductsItem)
 }

@@ -2,7 +2,10 @@ package com.example.zivamephone.di
 
 import android.content.Context
 import android.net.ConnectivityManager
+import androidx.room.Room
 import com.example.networkmodule.api.PhoneApi
+import com.example.networkmodule.database.PhoneDao
+import com.example.networkmodule.database.PhoneDataBase
 import com.example.networkmodule.network.HeaderInterceptor
 import com.example.networkmodule.network.NetworkClient
 import com.example.networkmodule.network.NetworkManager
@@ -61,6 +64,26 @@ class NetworkModule {
         repository: PhoneRepository
     ):PhoneUseCase{
         return PhoneUseCase((repository))
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideBaseAndroidDatabase(
+        @ApplicationContext context: Context
+    ):PhoneDataBase{
+        return Room.databaseBuilder(
+            context,
+            PhoneDataBase::class.java,
+            PhoneDataBase.Name
+        )
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideEmployeeDao(phoneDataBase: PhoneDataBase):PhoneDao{
+        return phoneDataBase.phone
     }
 
     @Provides

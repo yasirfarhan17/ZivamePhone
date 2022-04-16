@@ -5,23 +5,26 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.networkmodule.database.PhoneDao
 import com.example.networkmodule.model.ProductsItem
 import com.example.networkmodule.network.Resource
-import com.example.networkmodule.model.Response
 import com.example.networkmodule.usecase.PhoneUseCase
 import com.example.zivamephone.base.ViewState
 import com.example.zivamephone.util.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.plus
 import javax.inject.Inject
 
 
 @HiltViewModel
 class HomeViewModel  @Inject constructor(
-    private val getPhone:PhoneUseCase
+    private val getPhone:PhoneUseCase,
+    private val phoneDao: PhoneDao
 
 ):ViewModel(){
     private val _viewState=MutableLiveData<ViewState>(ViewState.Idle)
@@ -58,6 +61,14 @@ class HomeViewModel  @Inject constructor(
     }
     private val exceptionHandler = CoroutineExceptionHandler{_,exception ->
         handleFailure(throwable = exception)
+    }
+
+    fun insertToDB(responseItem: ProductsItem){
+        viewModelScope.launch(Dispatchers.IO) {
+           // phoneDao.clear()
+            val list=responseItem.toCartTable()
+            val dao=phoneDao.insertPhone(list)
+        }
     }
 
 }
