@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/activity_cart.xml" value="0.25" />
+        <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/activity_check_out.xml" value="0.15" />
         <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/cart_view.xml" value="0.25" />
         <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/indi_item_view.xml" value="0.22" />
-        <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/layout_appbar.xml" value="0.1" />
+        <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/layout_appbar.xml" value="0.33" />
         <entry key="..\:/Android/ZivamePhone/app/src/main/res/layout/layout_appbar_logout.xml" value="0.1" />
       </map>
     </option>

@@ -35,7 +35,7 @@ class HomeAdapter (
                     placeholder(R.drawable.ic_launcher_background)
                 }
                 tvProduct.text=item.name
-                tvPrice.text=item.price
+                tvPrice.text="Price:-₹ ${item.price}"
                 ratingBar.rating= item.rating?.toFloat()!!
 
                 btAdd.setOnClickListener {

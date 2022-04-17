@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#03A9F4">
+        android:background="@color/blue">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_search"
             android:layout_width="match_parent"
@@ -84,17 +84,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/tittle"/>
+
+            <ImageView
+                android:id="@+id/img_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/ic_baseline_search_24"
+                android:backgroundTint="@color/white"
+                android:text="White Rabbit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/img_cart"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:text="White Rabbit"
                 android:layout_marginEnd="10dp"
-                android:background="@drawable/ic_baseline_search_24"
-               android:backgroundTint="@color/white"
+                android:background="@drawable/ic_baseline_shopping_cart_24"
+                android:backgroundTint="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/img_search"/>
+                android:id="@+id/img_cart"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
