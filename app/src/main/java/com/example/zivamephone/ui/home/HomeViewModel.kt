@@ -12,12 +12,9 @@ import com.example.networkmodule.usecase.PhoneUseCase
 import com.example.zivamephone.base.ViewState
 import com.example.zivamephone.util.toLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.plus
 import javax.inject.Inject
 
 
@@ -29,6 +26,7 @@ class HomeViewModel  @Inject constructor(
 ):ViewModel(){
     private val _viewState=MutableLiveData<ViewState>(ViewState.Idle)
     val viewState=_viewState.toLiveData()
+     var count :Int=0
 
     private val _phoneList=MutableLiveData<List<ProductsItem>>()
     val phoneList=_phoneList.toLiveData()
@@ -70,5 +68,9 @@ class HomeViewModel  @Inject constructor(
             val dao=phoneDao.insertPhone(list)
         }
     }
-
-}
+     suspend fun countFromDB():Int = withContext(Dispatchers.IO){
+             count = phoneDao.getCount()!!
+             Log.d("dbcount1", count.toString())
+             return@withContext count
+     }
+    }

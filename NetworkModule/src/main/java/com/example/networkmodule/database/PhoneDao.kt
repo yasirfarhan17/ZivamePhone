@@ -1,5 +1,6 @@
 package com.example.networkmodule.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -20,5 +21,8 @@ interface PhoneDao {
 
     @Query("UPDATE phone SET quantity = :quant WHERE name = :id")
     fun update(quant:String, id: String)
+
+    @Query("SELECT COUNT(*) FROM phone")
+    fun getCount(): Int?
 
 }

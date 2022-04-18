@@ -19,5 +19,8 @@ class checkOut : AppCompatActivity() {
             startActivity(Intent(this,HomeActivity::class.java))
 
         }
+        binding.imgNormal.setOnClickListener {
+            startActivity(Intent(this,HomeActivity::class.java))
+        }
     }
 }

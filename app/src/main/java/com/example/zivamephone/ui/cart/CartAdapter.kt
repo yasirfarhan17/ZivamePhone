@@ -29,9 +29,9 @@ class CartAdapter(
     RecyclerView.ViewHolder(binding.root){
         fun bind(item:CartTable){
             with(binding){
-                imgPhone.load(item.image_url?: R.drawable.ic_launcher_background){
+                imgPhone.load(item.image_url?: R.drawable.ic_baseline_image_24){
                     crossfade(true)
-                    placeholder(R.drawable.ic_launcher_background)
+                    placeholder(R.drawable.ic_baseline_image_24)
                 }
                 tvProduct.text=item.name
                 tvPrice.text="Price:-₹ ${item.price}"

@@ -29,6 +29,9 @@ class CartActivity : AppCompatActivity(),CartAdapterCallBack {
         uiUtil= UiUtil(this)
         initUi()
         addObserver()
+        binding.imgNormal.setOnClickListener {
+            onBackPressed()
+        }
 
     }
 
@@ -45,6 +48,7 @@ class CartActivity : AppCompatActivity(),CartAdapterCallBack {
                 checkout.visibility=View.GONE
                 loading.visibility=View.VISIBLE
                 tvLoading.visibility=View.VISIBLE
+                tvWait.visibility=View.VISIBLE
                 Handler().postDelayed({
                     startActivity(Intent(this@CartActivity,checkOut::class.java))
                     finish()
